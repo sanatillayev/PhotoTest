@@ -1,5 +1,5 @@
 //
-//  PhotoEditorAppApp.swift
+//  PhotoEditorApp.swift
 //  PhotoEditorApp
 //
 //  Created by Bilol Sanatillayev on 30/07/24.
@@ -8,11 +8,15 @@
 import SwiftUI
 import FirebaseCore
 import GoogleSignIn
+import FirebaseAppCheck
+import Firebase
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
+        AppCheck.setAppCheckProviderFactory(AppCheckDebugProviderFactory())
+
         return true
     }
 }
@@ -40,10 +44,10 @@ struct PhotoEditorApp: App {
                         GIDSignIn.sharedInstance.handle(url)
                     })
                     .onAppear {
-                        GIDSignIn.sharedInstance.restorePreviousSignIn { gidUser, error in
-                            let user = User(id: gidUser?.idToken?.tokenString, email: gidUser?.profile?.email, name: gidUser?.profile?.name, picture: gidUser?.profile?.imageURL(withDimension: .min)?.absoluteString)
-                            appStateManager.startSession(user: user, with: .google)
-                        }
+//                        GIDSignIn.sharedInstance.restorePreviousSignIn { gidUser, error in
+//                            let user = User(id: gidUser?.idToken?.tokenString, email: gidUser?.profile?.email, name: gidUser?.profile?.name, picture: gidUser?.profile?.imageURL(withDimension: .min)?.absoluteString)
+//                            appStateManager.startSession(user: user, with: .google)
+//                        }
                     }
                 }
             }

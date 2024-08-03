@@ -24,7 +24,9 @@ struct PasswordRecoveryView: View {
             ActionButton(title: "Reset Password") {
                 viewModel.action.send(.resetPassword)
             }
+            .padding(.vertical, 40)
         }
+        .navigationTitle("Reset Password")
         .sheet(router)
 //        .alert("Error", isPresented: .constant(false)) {
 //            Text(viewModel.error ?? "")

@@ -34,19 +34,29 @@ struct SignInView: View {
             ActionButton(title: Constants.buttonTitle) {
                 viewModel.action.send(.loginWithEmail)
             }
+            .padding(.vertical)
+
             GoogleSignInButton(action: {
                 viewModel.action.send(.openGoogleForm)
             })
             .padding(.horizontal)
-            ActionButton(title: "Don't have an account? Sign Up") {
-                router.openSignUp()
+            .padding(.vertical)
 
-            }
-            ActionButton(title: "Forgot Password?") {
-                router.presentPasswordRecovery()
+            Text("Don't have an account? Sign Up")
+                .padding()
+                .onTapGesture {
+                    router.openSignUp()
+                }
+                .padding(.vertical)
 
-            }
+            Text("Forgot Password?")
+                .padding()
+                .onTapGesture {
+                    router.presentPasswordRecovery()
+                }
+                .padding(.vertical)
         }
+        .navigationTitle("Sign In")
         .navigation(router)
         .sheet(router)
         .onAppear(perform: {

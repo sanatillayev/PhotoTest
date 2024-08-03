@@ -45,7 +45,11 @@ final public class AuthManager: AnyAuthManager {
         do {
             let user = try await firebaseAuthHelper.register(email: email, password: password)
             await authStateManager.startSession(user: user, with: .email)
+            print("success")
+            print(user)
         } catch {
+            print("failure")
+            print(error)
             await authStateManager.notAuthorized()
         }
     }
@@ -55,6 +59,8 @@ final public class AuthManager: AnyAuthManager {
         do {
             let user = try await firebaseAuthHelper.signIn(email: email, password: password)
             await authStateManager.startSession(user: user, with: .email)
+            print("success")
+            print(user)
         } catch {
             print(error)
             await authStateManager.notAuthorized()

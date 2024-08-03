@@ -27,14 +27,9 @@ struct SignUpView: View {
             ActionButton(title: "Sign Up") {
                 viewModel.action.send(.loginWithEmail)
             }
-            .padding()
-            
-            Text("Already have an account? Sign In")
-                .onTapGesture {
-                    router.openSignUp()
-                }
-                .padding()
+            .padding(.vertical)
         }
+        .navigationTitle("Sign Up")
         //        .alert("Error", isPresented: .constant(false)) {
         //            Text(viewModel.error ?? "")
         //        }

@@ -63,7 +63,6 @@ class AuthViewModel: ObservableObject {
                 self?.error = error?.localizedDescription
                 return
             }
-            // If sign in succeeded, display the app's main content View.
             print("Success in google sign in")
         }
     }

@@ -54,9 +54,15 @@ final class FirebaseAuthHelper {
         guard !email.isEmpty, !password.isEmpty else {
             throw SignInWithFirebaseError.emptyEmailOrPassword
         }
-
-        let user = try await Auth.auth().createUser(withEmail: email, password: password).user
-        return User(id: user.uid, email: user.email, name: user.displayName, picture: user.photoURL?.absoluteString)
+        do {
+            let result = try await Auth.auth().createUser(withEmail: email, password: password)
+            let user = result.user
+            print(result)
+            return User(id: user.uid, email: user.email, name: user.displayName, picture: user.photoURL?.absoluteString)
+        } catch {
+            print(error)
+            throw error
+        }
     }
     
     public func resetPassword(email: String) async throws {
